@@ -14,7 +14,7 @@ public class BookView extends JFrame implements ActionListener {
 
     public BookView() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(300, 400);
+        setSize(200, 300);
         setTitle("BookView");
         ctrl = new BookCtrl();
         searched_list = new ArrayList<>();
