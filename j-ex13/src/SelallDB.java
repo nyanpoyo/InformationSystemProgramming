@@ -1,7 +1,6 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
@@ -40,7 +39,6 @@ public class SelallDB {
 
     public void executeQuery(String sql) {
         try {
-            System.out.println(sql);
             result = state.executeQuery(sql);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -51,7 +49,6 @@ public class SelallDB {
         try {
             int i = 0;
             while (result.next()) {
-                System.out.println(result.getString("sname"));
                 if (column_name.length != data.length) {
                     break;
                 }

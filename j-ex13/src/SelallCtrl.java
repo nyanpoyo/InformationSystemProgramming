@@ -17,7 +17,7 @@ public class SelallCtrl {
         db.executeQuery(sql);
     }
 
-    public void getDataFromTable(String column_name[], Vector<String> data[]) {
+    public void getDataFromDBTable(String column_name[], Vector<String> data[]) {
         db.getDataFromTable(column_name, data);
         db.close();
     }
