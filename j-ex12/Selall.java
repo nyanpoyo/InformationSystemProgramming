@@ -11,6 +11,7 @@ import javax.swing.*;
 import javax.swing.table.*;
 import java.util.Vector;
 
+
 class Selall extends JFrame {
     private DefaultTableModel tm;
     private JTable tb;
@@ -24,7 +25,7 @@ class Selall extends JFrame {
     Selall(String db_name, String sql) {
         getContentPane().setLayout(new FlowLayout());
         String[][] rowData = {};
-        String[] colNames = {"A", "B", "C"};
+        String[] colNames = {"sno", "sname", "address", "age"};
         tm = new DefaultTableModel(rowData, colNames);
         tb = new JTable(tm);
         sp = new JScrollPane(tb);
@@ -32,7 +33,7 @@ class Selall extends JFrame {
         getContentPane().add(sp);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("TableModelTest");
-        setSize(250, 120);
+        setSize(300, 300);
         try {
             Class.forName("org.sqlite.JDBC");
             con = DriverManager.getConnection(db_name);
@@ -58,14 +59,16 @@ class Selall extends JFrame {
 
     public void getTableLineContent(String row_name[], Vector<String> content[]) {
         try {
+            int i = 0;
             while (rs.next()) {
                 if (row_name.length != content.length) {
                     break;
                 }
-                for (int i = 0; i < row_name.length; i++) {
-                    content[i].add(rs.getString(row_name[i]));
-                }
+                for (int j = 0; j < row_name.length; j++)
+                    content[i].add(rs.getString(row_name[j]));
+                i++;
             }
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -77,9 +80,13 @@ class Selall extends JFrame {
         Vector<String>[] student_table = new Vector[STUDENT_TABLE_ROW_NUM];
         String row_name[] = {"sno", "sname", "address", "age"};
 
-        for (int i = 0; i < STUDENT_TABLE_ROW_NUM; i++) { student_table[i] = new Vector<String>(); }
+        for (int i = 0; i < STUDENT_TABLE_ROW_NUM; i++) {
+            student_table[i] = new Vector<String>();
+        }
         obj.getTableLineContent(row_name, student_table);
-        for (int i = 0; i < STUDENT_TABLE_ROW_NUM; i++) { obj.add(student_table[i]); }
+        for (int i = 0; i < STUDENT_TABLE_ROW_NUM; i++) {
+            obj.add(student_table[i]);
+        }
         obj.close(); //最後にcloseしないとデータベースのデータが保存されない
         obj.setVisible(true);
     }
