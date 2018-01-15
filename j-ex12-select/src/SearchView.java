@@ -83,7 +83,7 @@ public class SearchView extends JFrame implements ActionListener {
             tm.setRowCount(0);
             text_search.setText("");
         } else if (ae.getSource() == btn_quit) {
-
+            System.exit(0);
         }
     }
 

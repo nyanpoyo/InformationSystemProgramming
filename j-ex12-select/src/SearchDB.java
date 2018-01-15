@@ -30,7 +30,6 @@ public class SearchDB {
             while (result.next()) {
                 this.db_data_num++;
             }
-            System.out.println("row " + this.db_data_num);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
